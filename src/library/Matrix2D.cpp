@@ -1,7 +1,5 @@
-#include <cstdlib>
-#include <ctime>
-
 #include "Matrix2D.hpp"
+#include "RandomNumber.hpp"
 
 Matrix2D::Matrix2D(std::size_t row, std::size_t column)
 {
@@ -272,14 +270,13 @@ Matrix2D Matrix2D::transpose()
 
 void Matrix2D::fillRandom()
 {
-    /* initialize random seed: */
-    srand(time(nullptr));
+    static RandomNumber random(0);
 
     for(auto i = 0; i < m_row; ++i)
     {
         for(auto j = 0; j < m_column; ++j)
         {
-            (*this)(i,j) = ((double) rand() / (RAND_MAX)) + 1;
+            (*this)(i,j) = random.generateNumber();
         }
     }
 }
@@ -291,4 +288,14 @@ void Matrix2D::clear()
         delete[] m_pMatrix[i];
     }
     delete[] m_pMatrix;
+}
+
+Matrix2D operator-(double lhs, Matrix2D& rhs)
+{
+    return -rhs + lhs;
+}
+
+Matrix2D operator+(double lhs, Matrix2D& rhs)
+{
+    return rhs + lhs;
 }

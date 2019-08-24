@@ -7,6 +7,7 @@ include_directories(
 add_executable(${CMAKE_PROJECT_NAME}
     main.cpp
 
+    library/RandomNumber.cpp
     library/Matrix2D.cpp
     library/NeuralNetwork.cpp
     library/Math.cpp

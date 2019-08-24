@@ -74,7 +74,7 @@ void NeuralNetwork::trainNetwork()
     auto db2 = dZ2 / BATCH_SIZE;
 
     //LAYER 1
-    auto dZ1 = (m_W2.transpose() * dZ2) - (-Math_n::power(A1, 2) + 1.0F);
+    auto dZ1 = (m_W2.transpose() * dZ2) - (1.0F + Math_n::power(A1, 2));
     auto dW1 = (dZ1 * m_input.transpose()) / BATCH_SIZE;
     auto db1 = dZ1 / BATCH_SIZE;
 

@@ -6,6 +6,9 @@
 
 class Matrix2D
 {
+private:
+    friend Matrix2D operator-(double lhs, Matrix2D& rhs);
+    friend Matrix2D operator+(double lhs, Matrix2D& rhs);
 public:
     /**
      * @brief Construct a new Matrix 2 D object
