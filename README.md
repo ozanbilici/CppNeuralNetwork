@@ -6,10 +6,12 @@ Example project demonstrates neural network implementation in C++. CppNeuralNetw
 
 Simple xor gate is implemented by using neural network in C++. After the training, the results should be as following:
 
- Expected 0.0000 Output 0.0431
- Expected 1.0000 Output 0.9573
- Expected 1.0000 Output 0.9587
- Expected 0.0000 Output 0.0409
+| Expected | Output |
+|:--------:|:------:|
+| 0.0000   | 0.0431 |
+| 1.0000   | 0.9573 |
+| 1.0000   | 0.9587 |
+| 0.0000   | 0.0409 |
 
 ## Code structure
 
