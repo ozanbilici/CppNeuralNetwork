@@ -83,8 +83,6 @@ int main(int argv, char** argc)
             Timer timer;
             neuralNetwork.run();
         }
-
-
     }
 
     neuralNetwork.printResults();
