@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 
 #include "NeuralNetwork.hpp"
 #include "Configuration.hpp"
+#include "Timer.hpp"
 
 using namespace Configuration_n;
 
@@ -51,6 +53,9 @@ Matrix2D label2MatrixConverter(double label[])
  */
 int main(int argv, char** argc)
 {
+    // Set float precision to 4 for cout
+    std::cout << std::setprecision(4) << std::fixed;
+
     // data
     double data[4][2] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
     double labels[4] = {0, 1, 1, 0};
@@ -64,20 +69,22 @@ int main(int argv, char** argc)
 
     // loading the data
     std::cout << "Loading the training data..." << std::endl;
-    Matrix2D inputMatrix = data2MatrixConverter(data);
-    Matrix2D labelMatrix = label2MatrixConverter(labels);
+    Matrix2D inputMatrix = std::move(data2MatrixConverter(data));
+    Matrix2D labelMatrix = std::move(label2MatrixConverter(labels));
     neuralNetwork.load(inputMatrix, labelMatrix);
 
     // starting the training
     std::cout << "Training starting..." << std::endl;
     for(auto epoch = 0; epoch < NUMBER_EPOCH; ++epoch)
     {
-        neuralNetwork.run();
+        std::cout << "Epoch " << epoch << " Cost: " << (float) neuralNetwork.getCost() << " ";
 
-        if((epoch % PRINT_INTERVAL) == 0)
         {
-            std::cout << "Epoch " << epoch << " Cost: " << (float) neuralNetwork.getCost() << std::endl;
+            Timer timer;
+            neuralNetwork.run();
         }
+
+
     }
 
     neuralNetwork.printResults();

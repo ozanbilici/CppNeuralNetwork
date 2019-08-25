@@ -61,6 +61,7 @@ void NeuralNetwork::trainNetwork()
     auto Z1 = (m_W1 * m_input) + m_b1;
     auto A1 = Math_n::sigmoid(Z1);
 
+
     // Layer 2
     auto Z2 = (m_W2 * A1) + m_b2;
     auto A2 = Math_n::sigmoid(Z2);

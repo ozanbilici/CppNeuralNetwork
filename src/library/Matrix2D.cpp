@@ -1,13 +1,12 @@
+#include <cstring>
+#include <iostream>
+
 #include "Matrix2D.hpp"
 #include "RandomNumber.hpp"
 
 Matrix2D::Matrix2D(std::size_t row, std::size_t column)
 {
-    m_pMatrix = new double*[row];
-    for(int i = 0; i < row; ++i)
-    {
-        m_pMatrix[i] = new double[column];
-    }
+    m_pMatrix = new double[row*column];
 
     m_row = row;
     m_column = column;
@@ -20,16 +19,29 @@ Matrix2D::~Matrix2D()
 
 Matrix2D::Matrix2D(const Matrix2D& matrix)
 {
-    m_pMatrix = new double*[matrix.m_row];
-    for(int i = 0; i < matrix.m_row; ++i)
-    {
-        m_pMatrix[i] = new double[matrix.m_column];
-    }
+    // Create object
+    auto size = matrix.m_row * matrix.m_column;
+    m_pMatrix = new double[size];
 
+    // Set row and column
     m_row = matrix.m_row;
     m_column = matrix.m_column;
 
-    *this = matrix;
+    // Copy the matrix
+    std::memcpy(m_pMatrix, matrix.m_pMatrix, size * sizeof(double));
+}
+
+Matrix2D::Matrix2D(Matrix2D&& matrix)
+{
+    // Move the object
+    m_pMatrix = matrix.m_pMatrix;
+    m_row = matrix.m_row;
+    m_column = matrix.m_column;
+
+    // Remove the object
+    matrix.m_pMatrix = nullptr;
+    matrix.m_row = 0;
+    matrix.m_column = 0;
 }
 
 std::size_t Matrix2D::getRowSize() const
@@ -50,13 +62,8 @@ Matrix2D& Matrix2D::operator=(const Matrix2D& rhs)
         throw "Wrong assign operation!";
     }
 
-    for(auto i = 0; i < m_row; ++i)
-    {
-        for(auto j = 0; j < m_column; ++j)
-        {
-            (*this)(i, j) = rhs(i, j);
-        }
-    }
+    auto size = m_row * m_column;
+    std::memcpy(m_pMatrix, rhs.m_pMatrix, size * sizeof(double));
 
     return *this;
 }
@@ -245,12 +252,12 @@ Matrix2D& Matrix2D::operator-()
 
 double& Matrix2D::operator()(const std::uint32_t& row, const std::uint32_t& column)
 {
-    return m_pMatrix[row][column];
+    return m_pMatrix[row*m_column+column];
 }
 
 const double& Matrix2D::operator()(const std::uint32_t& row, const std::uint32_t& column) const
 {
-    return m_pMatrix[row][column];
+    return m_pMatrix[row*m_column+column];
 }
 
 Matrix2D Matrix2D::transpose()
@@ -283,10 +290,6 @@ void Matrix2D::fillRandom()
 
 void Matrix2D::clear()
 {
-    for(int i = 0; i < m_row; ++i)
-    {
-        delete[] m_pMatrix[i];
-    }
     delete[] m_pMatrix;
 }
 

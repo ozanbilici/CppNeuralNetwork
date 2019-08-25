@@ -37,11 +37,6 @@ static const double LEARNING_RATE = 0.01F;
  */
 constexpr auto NUMBER_EPOCH = 10000;
 
-/**
- * @brief Print interval is for print training results per interval in epoch
- */
-constexpr auto PRINT_INTERVAL = 500;
-
 }
 
 #endif // CONFIGURATION_HPP

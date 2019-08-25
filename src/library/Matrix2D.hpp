@@ -31,6 +31,11 @@ public:
     Matrix2D(const Matrix2D& matrix);
 
     /**
+     * @brief Move constructor
+     */
+    Matrix2D(Matrix2D&& matrix);
+
+    /**
      * @brief Get row size
      *
      * @return
@@ -91,7 +96,7 @@ private:
      */
     void clear();
 
-    double** m_pMatrix;
+    double* m_pMatrix;
     std::size_t m_row;
     std::size_t m_column;
 };
