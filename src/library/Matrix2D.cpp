@@ -10,6 +10,8 @@ Matrix2D::Matrix2D(std::size_t row, std::size_t column)
 
     m_row = row;
     m_column = column;
+
+    fillZero();
 }
 
 Matrix2D::~Matrix2D()
@@ -284,6 +286,17 @@ void Matrix2D::fillRandom()
         for(auto j = 0; j < m_column; ++j)
         {
             (*this)(i,j) = random.generateNumber();
+        }
+    }
+}
+
+void Matrix2D::fillZero()
+{
+    for(auto i = 0; i < m_row; ++i)
+    {
+        for(auto j = 0; j < m_column; ++j)
+        {
+            (*this)(i, j) = 0.0F;
         }
     }
 }

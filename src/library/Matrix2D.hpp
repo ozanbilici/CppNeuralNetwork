@@ -90,6 +90,11 @@ public:
      * @brief Fill randomly all the matrix elements between [0-1]
      */
     void fillRandom();
+
+    /**
+     * @brief Fill zero all the matrix elements 
+     */
+    void fillZero();
 private:
     /**
      * @brief Clear the memory
