@@ -2,7 +2,14 @@
 
 # CppNeuralNetwork (Neural Network Example in C++)
 
-Example project demonstrates neural network implementation in C++. CppNeuralNetwork project was inspired by [this](https://medium.com/coinmonks/implementing-an-artificial-neural-network-in-pure-java-no-external-dependencies-975749a38114). No additional library is needed.
+Example project demonstrates neural network implementation in C++. CppNeuralNetwork project was inspired by [this project](https://medium.com/coinmonks/implementing-an-artificial-neural-network-in-pure-java-no-external-dependencies-975749a38114). No additional library is needed.
+
+Simple xor gate is implemented by using neural network in C++. After the training, the results should be as following:
+
+ Expected 0.0000 Output 0.0431
+ Expected 1.0000 Output 0.9573
+ Expected 1.0000 Output 0.9587
+ Expected 0.0000 Output 0.0409
 
 ## Code structure
 
